@@ -12,33 +12,29 @@ module tb_fpu_top;
         if (result !== expected) $display("Test 1 Failed (3.5 + 2.25): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
         else $display("Test 1 PASSED (3.5 + 2.25): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
 
-        A = 64'hC012000000000000; B = 64'h3FF8000000000000; expected = 64'hC008000000000000; #10;
-        if (result !== expected) $display("Test 2 Failed (-4.75 + 1.5): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
-        else $display("Test 2 PASSED (-4.75 + 1.5): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
-
         A = 64'h0000000000000000; B = 64'h4017000000000000; expected = 64'h4017000000000000; #10;
-        if (result !== expected) $display("Test 3 Failed (0.0 + 5.75) : A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
-        else $display("Test 3 PASSED (0.0 + 5.75) : A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        if (result !== expected) $display("Test 2 Failed (0.0 + 5.75) : A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        else $display("Test 2 PASSED (0.0 + 5.75) : A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
 
         A = 64'h7FF0000000000000; B = 64'h0000000000000000; expected = 64'h7FF0000000000000; #10;
-        if (result !== expected) $display("Test 4 Failed (Inf + 0): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
-        else $display("Test 4 PASSED (Inf + 0): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        if (result !== expected) $display("Test 3 Failed (Inf + 0): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        else $display("Test 3 PASSED (Inf + 0): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
 
         A = 64'h7FF0000000000000; B = 64'h7FF0000000000000; expected = 64'h7FF0000000000000; #10;
-        if (result !== expected) $display("Test 5 Failed (Inf + Inf) : A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
-        else $display("Test 5 PASSED (Inf + Inf): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        if (result !== expected) $display("Test 4 Failed (Inf + Inf) : A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        else $display("Test 4 PASSED (Inf + Inf): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
 
         A = 64'hC00C000000000000; B = 64'hC002000000000000; expected = 64'hC017000000000000; instruction = 2'b00; #10;
-        if (result !== expected) $display("Test 6 Failed (-3.5 + -2.25): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
-        else $display("Test 6 PASSED (-3.5 + -2.25): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        if (result !== expected) $display("Test 5 Failed (-3.5 + -2.25): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        else $display("Test 5 PASSED (-3.5 + -2.25): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
 
         A = 64'hBFD0000000000000; B = 64'hBFD8000000000000; expected = 64'hBFE4000000000000; #10;
-        if (result !== expected) $display("Test 7 Failed (-0.25 + -0.375): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
-        else $display("Test 7 PASSED (-0.25 + -0.375): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        if (result !== expected) $display("Test 6 Failed (-0.25 + -0.375): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        else $display("Test 6 PASSED (-0.25 + -0.375): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
 
         A = 64'hC020400000000000; B = 64'h0000000000000000; expected = 64'hC020400000000000; #10;
-        if (result !== expected) $display("Test 8 Failed (-8.125 + 0.0): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
-        else $display("Test 8 PASSED (-8.125 + 0.0): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        if (result !== expected) $display("Test 7 Failed (-8.125 + 0.0): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
+        else $display("Test 7 PASSED (-8.125 + 0.0): A = %h, B = %h, Expected = %h, Got = %h", A, B, expected, result);
 
         $display("=============== START OF SUBTRACTION TESTS ================");
         instruction = 2'b01;

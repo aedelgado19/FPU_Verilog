@@ -1,8 +1,4 @@
-module fp_subtractor (
-    input  [63:0] A, B,
-    output reg [63:0] result
-);
-
+module fp_subtractor (input  [63:0] A, B, output reg [63:0] result);
     wire [10:0] exp_A = A[62:52];
     wire [10:0] exp_B = B[62:52];
     wire [51:0] mant_A = A[51:0];
@@ -15,6 +11,7 @@ module fp_subtractor (
     reg [54:0] mant_diff;
     reg [53:0] final_mantissa;
     reg final_sign;
+    integer i;
     
     always @(*) begin
         norm_mant_A = {2'b01, mant_A}; //add implicit leading 1
@@ -46,10 +43,14 @@ module fp_subtractor (
 
         //normalize mantissa
         final_exp = larger_exp;
-        while (mant_diff[52] == 0 && final_exp > 0) begin
-            mant_diff = mant_diff << 1;
-            final_exp = final_exp - 1;
-        end
+        
+	for (i = 0; i < 53; i = i + 1) begin
+	    if (mant_diff[52] == 0 && final_exp > 0) begin
+		mant_diff = mant_diff << 1;
+		final_exp = final_exp - 1;
+	    end
+	end
+
 
         //round to even
         if (mant_diff[1] == 1 && (mant_diff[0] == 1 || mant_diff[2] == 1)) begin

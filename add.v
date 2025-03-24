@@ -11,6 +11,7 @@ module fp_adder (input [63:0] A, B, output reg [63:0] result);
     reg [54:0] mant_sum;
     reg [53:0] final_mantissa;
     reg final_sign;
+    integer i;
 
     always @(*) begin
         //1.mantissa format
@@ -72,11 +73,13 @@ module fp_adder (input [63:0] A, B, output reg [63:0] result);
                 end
             end 
             else begin
-		//prevent overshifting with subtraction
-                while (final_mantissa[53] == 0 && final_exp > 1024) begin
-                    final_mantissa = final_mantissa << 1;
-                    final_exp = final_exp - 1;
-                end
+		
+		for (i = 0; i < 53; i = i + 1) begin
+		    if (final_mantissa[53] == 0 && final_exp > 0) begin
+			final_mantissa = final_mantissa << 1;
+			final_exp = final_exp - 1;
+		    end
+		end
             end
 
             //round to nearest even num
